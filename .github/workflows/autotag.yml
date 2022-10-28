@@ -1,6 +1,8 @@
-name: Prod Auto Version Bump Test
+name: Prod Auto Version Bump & Sentry Release
 on:
-  push:
+  pull_request:
+    types:
+      - closed
     branches:
       - main
 
