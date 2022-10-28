@@ -1,0 +1,23 @@
+name: Prod Auto Version Bump Test
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    environment: prod
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        ref: ${{ github.event.pull_request.head.sha }}
+        fetch-depth: '0'
+    - name: Bump version and push tag
+      id: versionBump
+      uses: anothrNick/github-tag-action@v1 # README: https://github.com/anothrNick/github-tag-action
+      env:
+        GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+        WITH_V: true
+        DEFAULT_BUMP: patch
+        RELEASE_BRANCHES: master
