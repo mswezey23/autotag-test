@@ -2,7 +2,7 @@ name: Prod Auto Version Bump Test
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   build:
